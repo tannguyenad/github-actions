@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Check branch name
         run: |
+          echo "$GITHUB_ACTIONS"
+          echo "$CI"
           echo "ref_name: ${{ github.ref_name }}"
           echo "ref: ${{ github.ref }}"
           echo "head_ref: ${{ github.head_ref }}"

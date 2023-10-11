@@ -43,6 +43,7 @@ jobs:
 
       - name: Report
         uses: ArtiomTr/jest-coverage-report-action@v2
+        if: always()
         with:
           skip-step: all
           coverage-file: report.json

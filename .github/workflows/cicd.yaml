@@ -36,7 +36,7 @@ jobs:
       - name: Test
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          test-script: CI=true yarn test --json --outputFile=report.json
+          test-script: CI=true yarn test --coverage --testLocationInResults --json --outputFile=report.json
 #      - name: Test
 #        run: |
 #          CI=true yarn test --testResultsProcessor=jest-junit

@@ -47,11 +47,19 @@ jobs:
 
       - name: Test
         run: |
-          CI=true JEST_JUNIT_SUITE_NAME="{filepath}" JEST_JUNIT_TITLE="{filepath}" yarn test --testResultsProcessor=jest-junit
+          CI=true yarn test --testResultsProcessor=jest-junit
 
       - name: Report
-        uses: EnricoMi/publish-unit-test-result-action@v2
+        uses: dorny/test-reporter@v1
         if: always()
         with:
-          files: |
-            junit.xml
+          name: Test results
+          path: junit.xml
+          reporter: jest-junit
+
+#      - name: Report
+#        uses: EnricoMi/publish-unit-test-result-action@v2
+#        if: always()
+#        with:
+#          files: |
+#            junit.xml

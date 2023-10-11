@@ -53,7 +53,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: always()
         with:
-          name: Test results
+          name: Test
           path: junit.xml
           reporter: jest-junit
 

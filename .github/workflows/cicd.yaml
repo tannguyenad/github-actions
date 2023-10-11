@@ -35,23 +35,23 @@ jobs:
 
 #      - name: Test
 #        run: |
-#          CI=true yarn test --testResultsProcessor=jest-junit
+#          CI=true yarn test --coverage --testLocationInResults --json --outputFile=report.json
+#
+#      - name: Report
+#        uses: ArtiomTr/jest-coverage-report-action@v2
+#        if: always()
+#        with:
+#          skip-step: all
+#          coverage-file: report.json
+#          base-coverage-file: report.json
 
       - name: Test
         run: |
-          CI=true yarn test --coverage --testLocationInResults --json --outputFile=report.json
+          CI=true yarn test --testResultsProcessor=jest-junit
 
       - name: Report
-        uses: ArtiomTr/jest-coverage-report-action@v2
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
-          skip-step: all
-          coverage-file: report.json
-          base-coverage-file: report.json
-
-#      - name: Report
-#        uses: EnricoMi/publish-unit-test-result-action@v2
-#        if: always()
-#        with:
-#          files: |
-#            junit.xml
+          files: |
+            junit.xml

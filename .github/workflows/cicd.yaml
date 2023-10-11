@@ -34,12 +34,16 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Test
-        run: |
-          CI=true yarn test --testResultsProcessor=jest-junit
-
-      - name: Report
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
+        uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          files: |
-            junit.xml
+          test-script: CI=true yarn test --json --outputFile=report.json
+#      - name: Test
+#        run: |
+#          CI=true yarn test --testResultsProcessor=jest-junit
+
+#      - name: Report
+#        uses: EnricoMi/publish-unit-test-result-action@v2
+#        if: always()
+#        with:
+#          files: |
+#            junit.xml

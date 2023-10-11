@@ -33,13 +33,20 @@ jobs:
         shell: bash
         run: yarn install --frozen-lockfile
 
-      - name: Test
-        uses: ArtiomTr/jest-coverage-report-action@v2
-        with:
-          test-script: CI=true yarn test --coverage --testLocationInResults --json --outputFile=report.json
 #      - name: Test
 #        run: |
 #          CI=true yarn test --testResultsProcessor=jest-junit
+
+      - name: Test
+        run: |
+          CI=true yarn test --coverage --testLocationInResults --json --outputFile=report.json
+
+      - name: Report
+        uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          skip-step: all
+          coverage-file: report.json
+          base-coverage-file: report.json
 
 #      - name: Report
 #        uses: EnricoMi/publish-unit-test-result-action@v2

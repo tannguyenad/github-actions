@@ -8,11 +8,12 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Check branch name
+      - name: Test
         run: |
-          echo "$GITHUB_ACTIONS"
-          echo "$CI"
-          echo "ref_name: ${{ github.ref_name }}"
-          echo "ref: ${{ github.ref }}"
-          echo "head_ref: ${{ github.head_ref }}"
-          echo "base_ref: ${{ github.base_ref }}"
+          CI=true yarn test --json --outputFile test-results.json
+
+      - name: Report
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: |
+            test-results.json

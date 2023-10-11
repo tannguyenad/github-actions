@@ -47,7 +47,7 @@ jobs:
 
       - name: Test
         run: |
-          CI=true JEST_USE_PATH_FOR_SUITE_NAME=true yarn test --testResultsProcessor=jest-junit
+          CI=true JEST_JUNIT_SUITE_NAME="{filepath}" JEST_JUNIT_TITLE="{filepath}" yarn test --testResultsProcessor=jest-junit
 
       - name: Report
         uses: EnricoMi/publish-unit-test-result-action@v2

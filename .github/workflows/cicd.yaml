@@ -47,7 +47,7 @@ jobs:
 
       - name: Test
         run: |
-          CI=true JEST_JUNIT_ADD_FILE_ATTRIBUTE=true yarn test --testResultsProcessor=jest-junit
+          CI=true JEST_JUNIT_ADD_FILE_ATTRIBUTE=true yarn test ---reporters=default --reporters=jest-junit
 
       - name: Report
         uses: dorny/test-reporter@v1

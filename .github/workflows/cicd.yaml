@@ -46,8 +46,14 @@ jobs:
 #          base-coverage-file: report.json
 
       - name: Test
+        env:
+          CI: true
+          JEST_JUNIT_ADD_FILE_ATTRIBUTE: true
+          JEST_JUNIT_CLASSNAME: "{suitename}"
+          JEST_JUNIT_SUITE_NAME: "{filepath}"
+
         run: |
-          CI=true JEST_JUNIT_ADD_FILE_ATTRIBUTE=true yarn test ---reporters=default --reporters=jest-junit
+          yarn test ---reporters=default --reporters=jest-junit
 
       - name: Report
         uses: dorny/test-reporter@v1

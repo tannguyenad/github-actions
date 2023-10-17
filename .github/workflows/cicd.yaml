@@ -47,13 +47,14 @@ jobs:
 
       - name: Test
         env:
-          CI: true
           JEST_JUNIT_ADD_FILE_ATTRIBUTE: true
+          JEST_SUITE_NAME: "Test Results"
           JEST_JUNIT_CLASSNAME: "{suitename}"
           JEST_JUNIT_SUITE_NAME: "{filepath}"
           JEST_JUNIT_TITLE: "{title}"
 
         run: |
+          git branch --show-current
           yarn test ---reporters=default --reporters=jest-junit
 
       - name: Report

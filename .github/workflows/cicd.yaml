@@ -1,6 +1,9 @@
 name: Test branch
 
 on:
+  push:
+    branches:
+      - cicd
   pull_request:
 
 jobs:

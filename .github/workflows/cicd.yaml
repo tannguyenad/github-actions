@@ -52,6 +52,10 @@ jobs:
         with:
           test-command: "yarn test -- --testLocationInResults --json --coverage --outputFile=jest.results.json"
 
+      - if: always()
+        run: |
+          ls -la
+          
 #      - name: Test
 #        run: |
 #          CI=true yarn test --coverage --testLocationInResults --json --outputFile=report.json

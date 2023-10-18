@@ -45,6 +45,13 @@ jobs:
         shell: bash
         run: yarn install --frozen-lockfile
 
+      - name: Test
+        uses: willcaul/jest-github-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          test-command: "CI=true yarn test"
+
 #      - name: Test
 #        run: |
 #          CI=true yarn test --coverage --testLocationInResults --json --outputFile=report.json
@@ -57,17 +64,16 @@ jobs:
 #          coverage-file: report.json
 #          base-coverage-file: report.json
 
-      - name: Test
+      # - name: Test
         # env:
         #   JEST_JUNIT_ADD_FILE_ATTRIBUTE: true
         #   JEST_SUITE_NAME: "Test Results"
         #   JEST_JUNIT_CLASSNAME: "{suitename}"
         #   JEST_JUNIT_SUITE_NAME: "{filepath}"
         #   JEST_JUNIT_TITLE: "{title}"
-
-        run: |
-          yarn tsc --noEmit
-          # yarn test ---reporters=default --reporters=jest-junit
+        # run: |
+        #   yarn tsc --noEmit
+        #   # yarn test ---reporters=default --reporters=jest-junit
 
       # - name: Report
       #   uses: dorny/test-reporter@v1

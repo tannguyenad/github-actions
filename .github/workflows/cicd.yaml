@@ -50,7 +50,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          test-command: "yarn test --json --coverage --outputFile=jest.results.json"
+          test-command: "yarn test -- --testLocationInResults --json --coverage --outputFile=jest.results.json"
 
 #      - name: Test
 #        run: |

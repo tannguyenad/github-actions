@@ -8,6 +8,8 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       # - run: |
       #     echo -e "# :open_umbrella: Code Coverage\n| % Stmts | % Branch | % Funcs | % Lines |\n| ------- |--------- | ------- | ------- |\n| app1 | 51.00 :red_circle: | 45.77 :red_circle: | 76.14 :red_circle: | 70.73 :red_circle: |\n| app3 | 63.04 :red_circle: | 37.5 :red_circle: | 72.13 :red_circle: | 64 :red_circle: |\n| app2 | 32.58 :red_circle: | 75.5 :red_circle: | 44.71 :red_circle: | 75.23 :red_circle: |" >> "./test.md"
 

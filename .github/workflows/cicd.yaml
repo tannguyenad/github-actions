@@ -1,0 +1,93 @@
+name: Test branch
+
+on:
+  push:
+    branches:
+      - cicd
+  pull_request:
+
+jobs:
+  check:
+    name: Test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - run: |
+          echo "HEAD_REF:${{ github.head_ref }}"
+          echo "REF_NAME:${{ github.ref_name }}"
+          git branch --show-current
+          echo "----"
+          git rev-parse --abbrev-ref HEAD
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        id: setup-node
+        with:
+          node-version: 16
+          cache: 'yarn'
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node_modules-cache-${{ runner.os }}-${{ steps.setup-node.outputs.node-version }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies
+        shell: bash
+        run: yarn install --frozen-lockfile
+
+      - name: Test
+        uses: willcaul/jest-github-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - if: always()
+        run: |
+          ls -la
+
+#      - name: Test
+#        run: |
+#          CI=true yarn test --coverage --testLocationInResults --json --outputFile=report.json
+#
+#      - name: Report
+#        uses: ArtiomTr/jest-coverage-report-action@v2
+#        if: always()
+#        with:
+#          skip-step: all
+#          coverage-file: report.json
+#          base-coverage-file: report.json
+
+      # - name: Test
+        # env:
+        #   JEST_JUNIT_ADD_FILE_ATTRIBUTE: true
+        #   JEST_SUITE_NAME: "Test Results"
+        #   JEST_JUNIT_CLASSNAME: "{suitename}"
+        #   JEST_JUNIT_SUITE_NAME: "{filepath}"
+        #   JEST_JUNIT_TITLE: "{title}"
+        # run: |
+        #   yarn tsc --noEmit
+        #   # yarn test ---reporters=default --reporters=jest-junit
+
+      # - name: Report
+      #   uses: dorny/test-reporter@v1
+      #   if: always()
+      #   with:
+      #     name: Test Report
+      #     path: junit.xml
+      #     reporter: jest-junit
+
+#      - name: Report
+#        uses: EnricoMi/publish-unit-test-result-action@v2
+#        if: always()
+#        with:
+#          files: |
+#            junit.xml

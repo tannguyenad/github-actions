@@ -1,0 +1,16 @@
+name: Release
+
+on:
+  workflow_run:
+    workflows: [Test]
+    types: [requested]
+    branches: [main]
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: |
+          echo "Done"

@@ -12,4 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test step
-        run: echo "Test step"
+        run: |
+          echo "Test step"
+          exit 1

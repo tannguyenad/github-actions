@@ -14,4 +14,4 @@ jobs:
       - name: Echo
         run: |
           echo "Done"
-          exit 1
+          exit 0

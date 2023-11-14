@@ -21,6 +21,7 @@ jobs:
   result:
     name: Result
     runs-on: ubuntu-latest
+    needs: [test]
     steps:
       - name: Foo
         run: |

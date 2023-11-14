@@ -1,4 +1,4 @@
-name: Test
+name: Test CI
 
 on:
   push:
@@ -6,19 +6,22 @@ on:
       - main
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Test step
-        run: |
-          echo "Test step"
-          exit 1
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
   result:
     name: Result
     runs-on: ubuntu-latest
+    needs: [test]
     steps:
       - name: Foo
         run: |

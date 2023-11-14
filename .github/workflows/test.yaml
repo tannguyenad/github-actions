@@ -15,9 +15,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Test step
-        run: |
-          echo "Test step"
+
 
       - name: Checkout repository
         uses: actions/checkout@v3

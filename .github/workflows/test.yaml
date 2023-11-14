@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   test:
@@ -14,3 +15,11 @@ jobs:
         run: |
           echo "Test step"
           exit 1
+
+  result:
+    name: Result
+    runs-on: ubuntu-latest
+    steps:
+      - name: Foo
+        run: |
+          npm --version

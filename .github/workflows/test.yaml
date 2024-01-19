@@ -15,14 +15,18 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Set error
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.setFailed('Error')
 
   result:
     name: Result
     runs-on: ubuntu-latest
     needs: [test]
     steps:
-      - name: Foo
+      - name: Check
         run: |
-          npm --version
+          echo "{{ fromJSON(needs.test) }}"
+          

@@ -24,7 +24,7 @@ jobs:
 
       - run: |
           mkdir output
-          echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> './output/text.txt'
+          echo "${{ format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}" >> './output/text.txt'
 
       - name: Upload
         uses: actions/upload-artifact@v3

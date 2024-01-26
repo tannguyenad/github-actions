@@ -32,7 +32,7 @@ jobs:
         with:
           script: |
             console.log('${{ github.repository }}')
-            console.log('${{ env.REPOSITORY }}')
+            console.log('${{ env.GITHUB_REPOSITORY }}')
             console.log('${{ env.BRANCH_NAME}}:${{ env.BUILD_URL }}')
 
   result:

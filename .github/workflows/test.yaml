@@ -22,11 +22,16 @@ jobs:
         with:
           repository: ${{ env.REPOSITORY }}
 
-      - name: Set error
+      - name: Build URL
+        if: ${{ !cancelled() }}
+        env:
+          BRANCH_NAME:  ${{ github.head_ref || github.ref_name }}
+          BUILD_NUMBER: ${{ github.run_id }}
+          BUILD_URL: ${{ format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}
         uses: actions/github-script@v7
         with:
           script: |
-            core.setFailed('Error')
+            core.notice('${{ env.BRANCH_NAME}}:${{ env.BUILD_URL }}')
 
   result:
     name: Result

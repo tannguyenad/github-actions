@@ -23,7 +23,15 @@ jobs:
           repository: ${{ env.VAR_REPOSITORY }}
 
       - run: |
-          echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> './output/text.txt'
+
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        if: ${{ !cancelled() && steps.result.conclusion == 'failure' }}
+        with:
+          name: artifact
+          path: output
+          retention-days: 1
 
       - name: Build URL
         if: ${{ !cancelled() }}

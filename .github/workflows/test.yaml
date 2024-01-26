@@ -31,7 +31,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            core.notice('${{ env.BRANCH_NAME}}:${{ env.BUILD_URL }}')
+            console.log('${{ env.BRANCH_NAME}}:${{ env.BUILD_URL }}')
 
   result:
     name: Result

@@ -23,6 +23,7 @@ jobs:
           repository: ${{ env.VAR_REPOSITORY }}
 
       - run: |
+          mkdir output
           echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> './output/text.txt'
 
       - name: Upload

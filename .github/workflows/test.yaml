@@ -15,12 +15,12 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     env:
-      REPOSITORY: ${{ secrets.TEST_SECRETS }}
+      VAR_REPOSITORY: ${{ secrets.TEST_SECRETS }}
     steps:
       - name: Checkout argo-apps repository
         uses: actions/checkout@v4
         with:
-          repository: ${{ env.REPOSITORY }}
+          repository: ${{ env.VAR_REPOSITORY }}
 
       - name: Build URL
         if: ${{ !cancelled() }}
@@ -32,7 +32,6 @@ jobs:
         with:
           script: |
             console.log('${{ github.repository }}')
-            console.log('${{ env.GITHUB_REPOSITORY }}')
             console.log('${{ env.BRANCH_NAME}}:${{ env.BUILD_URL }}')
 
   result:

@@ -14,44 +14,23 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    env:
-      VAR_REPOSITORY: ${{ secrets.TEST_SECRETS }}
     steps:
-      - name: Checkout argo-apps repository
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ env.VAR_REPOSITORY }}
+      - run: exit 1
 
-      - run: |
-          mkdir output
-          echo "${{ format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}" >> './output/text.txt'
-
-      - name: Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: artifact
-          path: output
-          retention-days: 1
-
-      - name: Build URL
-        if: ${{ !cancelled() }}
-        env:
-          BRANCH_NAME:  ${{ github.head_ref || github.ref_name }}
-          BUILD_NUMBER: ${{ github.run_id }}
-          BUILD_URL: ${{ format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}
-        uses: actions/github-script@v7
-        with:
-          script: |
-            console.log('${{ github.repository }}')
-            console.log('${{ env.BRANCH_NAME}}:${{ env.BUILD_URL }}')
+  build:
+    name: Build
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build success"
 
   result:
     name: Result
     runs-on: ubuntu-latest
-    needs: [test]
-    if: always()
+    needs: [build]
+    if: ${{ !cancelled() }}
     steps:
       - name: Check
         run: |
-          echo "${{ toJSON(needs.test) }}"
+          echo "${{ needs.*.result }}"
           

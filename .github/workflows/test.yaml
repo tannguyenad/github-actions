@@ -32,5 +32,5 @@ jobs:
     steps:
       - name: Check
         run: |
-          echo "${{ needs.*.result }}"
+          echo "${{ needs.build.result }}"
           

@@ -1,20 +1,16 @@
 phrase:
-  access_token: 7c7de4ee3517982a37b7378da5d0dbc6dbded0a5713a424945d7c97391c6e4c2
+  host: https://api.us.app.phrase.com/v2
   project_id: 21e22bc911a8e565e165c7d7b476a8b7
-  file_format: json
-
   push:
     sources:
     - file: ./en-US_src.json
       params:
-        file_format: json
         locale_id: 41585aa320f939155112867d37f32bf0
-        update_translations: true
-        update_descriptions: true
-
+        file_format: json
   pull:
     targets:
-    - file: './i18n/fr-FR.json'
+    - file: ./i18n/<locale_name>.json
       params:
-        file_format: json
-        locale_id: bd3fcfd5965a86afe23c4b1448df7982
+        file_format: simple_json
+        include_empty_translations: true
+        fallback_locale_id: en-US

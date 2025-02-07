@@ -1,0 +1,20 @@
+{
+  "general.back": "Back",
+  "general.cancel": "Cancel",
+  "general.confirm": "Are you sure?",
+  "general.destroy": "Delete",
+  "general.edit": "Edit",
+  "general.new": "New",
+  "hello": "Hello, $USER$",
+  "layouts.application.about": "About",
+  "layouts.application.account": "Account",
+  "layouts.application.app_store": "App Store",
+  "layouts.application.imprint": "Imprint",
+  "layouts.application.logout": "Logout",
+  "layouts.application.my_mails": "My Mails",
+  "layouts.application.press": "Press",
+  "layouts.application.preview": "Preview",
+  "layouts.application.profile": "Profile",
+  "layouts.application.sign_in": "Login",
+  "layouts.application.sign_up": "Register"
+}

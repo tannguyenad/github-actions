@@ -1,0 +1,64 @@
+{
+  "general.back": {
+    "message": "Back",
+    "description": "Back to the hell"
+  },
+  "general.cancel": {
+    "message": "Cancel"
+  },
+  "general.confirm": {
+    "message": "Are you sure?"
+  },
+  "general.destroy": {
+    "message": "Delete"
+  },
+  "general.edit": {
+    "message": "Edit"
+  },
+  "general.new": {
+    "message": "New"
+  },
+  "hello": {
+    "message": "Hello, $USER$",
+    "description": "Greet the user",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "Cira"
+      }
+    }
+  },
+  "layouts.application.about": {
+    "message": "About"
+  },
+  "layouts.application.account": {
+    "message": "Account"
+  },
+  "layouts.application.app_store": {
+    "message": "App Store"
+  },
+  "layouts.application.imprint": {
+    "message": "Imprint"
+  },
+  "layouts.application.logout": {
+    "message": "Logout"
+  },
+  "layouts.application.my_mails": {
+    "message": "My Mails"
+  },
+  "layouts.application.press": {
+    "message": "Press"
+  },
+  "layouts.application.preview": {
+    "message": "Preview"
+  },
+  "layouts.application.profile": {
+    "message": "Profile"
+  },
+  "layouts.application.sign_in": {
+    "message": "Login"
+  },
+  "layouts.application.sign_up": {
+    "message": "Register"
+  }
+}
